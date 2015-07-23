@@ -22,8 +22,15 @@
   "bugs": {
     "url": "https://github.com/awseward/silly-slacker/issues"
   },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": ["js"],
+    "moduleFileExtensions": ["js", "json"],
+    "testDirectoryName": "__tests__"
+  },
   "homepage": "https://github.com/awseward/silly-slacker#readme",
   "devDependencies": {
+    "babel-jest": "*",
     "gulp-task-listing": "^1.0.1",
     "jest-cli": "^0.4.16"
   }
