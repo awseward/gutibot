@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const barelyBot = require("./barelyBot").bot;
+const flippyBot = require("./flippyBot").bot;
 const defineBot = require("./defineBot");
 
 const app = express();
