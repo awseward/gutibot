@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.post("/doesheknower", barelyBot);
+app.post("/doesheknower", flippyBot);
 app.post("/define", defineBot);
 
 app.use((err, req, res, next) => {
