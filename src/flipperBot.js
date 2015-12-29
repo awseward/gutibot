@@ -2,9 +2,13 @@
 const strUtils = require('./stringUtils');
 let currentFlipperId = '';
 
+function getSlackToken() {
+  return process.env.SLACK_API_TOKEN || 'SLACK_API_TOKEN not set';
+}
+
 function setFlipper() {
   // obviously wrong, need to figure out how I am going to track a day
-  itHasBeenADay = true;
+  const itHasBeenADay = true;
 
   if(itHasBeenADay) {
     currentFlipper = getRandomUserId();
