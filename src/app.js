@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const barelyBot = require("./barelyBot").bot;
-const flippyBot = require("./flippyBot").bot;
+const flipperBot = require("./flipperBot").bot;
 const defineBot = require("./defineBot");
 
 const app = express();
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.post("/doesheknower", barelyBot);
-app.post("/doesheknower", flippyBot);
+app.post("/flipper", flipperBot);
 app.post("/define", defineBot);
 
 app.use((err, req, res, next) => {
