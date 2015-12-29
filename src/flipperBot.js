@@ -30,16 +30,6 @@ function getUsers() {
   return axios.get(url, params);
 }
 
-function setFlipper() {
-  // // obviously wrong, need to figure out how I am going to track a day
-  // const itHasBeenADay = true;
-
-  // if(itHasBeenADay) {
-  //   currentFlipper = getRandomUserId();
-  // }
-  // return currentFlipper;
-}
-
 function getRandomUserId() {
   // // hopefully we have access to users.list here
   // // https://api.slack.com/methods/users.list
@@ -48,12 +38,11 @@ function getRandomUserId() {
   // return users.list[Math.floor(Math.random() * users.list.length)].id;
 }
 
-function isFlipper(username) {
-  // return username === currentFlipper;
-}
-
 function bot(req, res) {
   const message = req.body;
+  const flipperId = getFlipperId();
+
+  if (!messageIsFromFlipper(message, flipperId)) { return res.status(200); }
 
   console.log('MESSAGE', message);
 
