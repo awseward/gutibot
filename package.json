@@ -23,6 +23,7 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^5.0",
     "gulp-task-listing": "^1.0.1",
+    "request": "^2.67.0",
     "unirest": "^0.4.2"
   },
   "devDependencies": {
