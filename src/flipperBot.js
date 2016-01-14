@@ -1,28 +1,27 @@
 "use strict";
 
-const strUtils = require('./stringUtils');
 const axios = require('axios');
 
-function getSlackToken() {
+function _getSlackToken() {
   return process.env.SLACK_API_TOKEN || 'SLACK_API_TOKEN not set';
 }
 
-function getUserId(message) {
+function _getUserId(message) {
   return message.user_id;
 }
 
-function getFlipperId() {
+function _getFlipperId() {
   // TODO: Un-hardcode this.
   return 'U03SS4H49';
 }
 
-function messageIsFromFlipper(message, flipperId) {
-  return getUserId(message) === flipperId;
+function _messageIsFromFlipper(message, flipperId) {
+  return _getUserId(message) === flipperId;
 }
 
-function getUsers() {
+function _getUsers() {
   const url = 'https://slack.com/api/users.list';
-  const token = getSlackToken();
+  const token = _getSlackToken();
   const params = { params: { token } };
 
   return axios.get(url, params);
@@ -30,11 +29,11 @@ function getUsers() {
 
 function bot(req, res) {
   const message = req.body;
-  const flipperId = getFlipperId();
+  const flipperId = _getFlipperId();
 
-  if (!messageIsFromFlipper(message, flipperId)) { return res.status(200); }
+  if (!_messageIsFromFlipper(message, flipperId)) { return res.status(200); }
 
-  getUsers()
+  _getUsers()
     .then(resp => {
       const members = resp.data.members;
       const flipperCandidates = members.filter(user => user.id === flipperId);
