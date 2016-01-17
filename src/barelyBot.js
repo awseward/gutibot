@@ -36,30 +36,36 @@ function _isTwentyFivePercentChance() {
   return _getRandomInt(0, 4) === 0;
 }
 
-function _shouldRespond(username, matches) {
-  return username !== 'slackbot'
-    && matches.length !== 0
-    && _isTwentyFivePercentChance();
+// NOTE: This will probably not be quite as simple and straightforward since it
+// will be happening asynchronously, but this will do as a placeholder for the
+// time-being
+function _isDictionaryWord(word) {
+  // TODO: Actually implement this.
+  return _isTwentyFivePercentChance();
+}
+
+function _getDictionaryWords(words) {
+  return words.filter(_isDictionaryWord);
+}
+
+function _isSlackbot(username) {
+  return username === 'slackbot';
+}
+
+function _performDictionaryLookupsAndMaybePostBack(request, matches) {
+  // TODO
 }
 
 function bot(req, res) {
   const text = req.body.text;
   const username = req.body.user_name;
   const matches = _cleanMatches(getMatches(text));
-  const linkify = strUtils.linkifySlackUsername;
 
-  if (!_shouldRespond(username, matches)) {
-    return gutiBot.respondOk(res);
+  if (!_isSlackbot(username)) {
+    _performDictionaryLookupsAndMaybePostBack(req, matches);
   }
 
-  const blankEr = matches
-    .map(_splitByEr)
-    .map(_formatSplitWordParts)
-    .join(" ");
-
-  const message = `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
-
-  return gutiBot.respondWith(res, message);
+  return gutiBot.respondOk(res);
 }
 
 module.exports = {
