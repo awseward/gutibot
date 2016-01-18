@@ -17,6 +17,7 @@
     "url": "https://github.com/awseward/gutibot/issues"
   },
   "dependencies": {
+    "axios": "^0.8.1",
     "body-parser": "^1.13.1",
     "del": "^2.0",
     "express": "^4.12.4",
