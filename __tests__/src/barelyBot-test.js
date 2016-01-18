@@ -1,8 +1,7 @@
 "use strict";
 
-jest.autoMockOff();
-
-const barelyBot = require("../../src/barelyBot");
+require('../testHelper');
+const barelyBot = require('../../src/barelyBot');
 
 describe("getMatches", () => {
   it("finds matches", () => {

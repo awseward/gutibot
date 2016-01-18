@@ -1,11 +1,11 @@
 "use strict";
 
-const srcPath = "../../../src/utils/slackUtils";
-jest.dontMock(srcPath);
+require('../../testHelper.js');
+const slack = require('../../../src/utils/slackUtils');
 
 describe('slackUtils', () => {
   describe('outgoingWebhook', () => {
-    const outgoing = require(srcPath).outgoingWebhook;
+    const outgoing = slack.outgoingWebhook;
 
     // TODO
     xdescribe('request parsing');

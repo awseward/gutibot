@@ -1,11 +1,11 @@
 "use strict";
 
-const srcPath = "../../src/stringUtils.js";
-jest.dontMock(srcPath);
+require('../testHelper');
+const stringUtils = require('../../src/stringUtils.js');
 
 describe('stringUtils', () => {
   describe("splitWord", () => {
-    const splitWord = require(srcPath).splitWord;
+    const splitWord = stringUtils.splitWord;
 
     it("splits the word by 'er'", () => {
       const word = 'boer';
@@ -49,7 +49,7 @@ describe('stringUtils', () => {
   });
 
   describe('capitalizeFirstCharacter', () => {
-    const capFirst = require(srcPath).capitalizeFirstCharacter;
+    const capFirst = stringUtils.capitalizeFirstCharacter;
 
     it('capitalizes the first character of a string', () => {
       const str = 'hello';
@@ -85,7 +85,7 @@ describe('stringUtils', () => {
   });
 
   describe('linkifySlackUsername', () => {
-    const linkify = require(srcPath).linkifySlackUsername;
+    const linkify = stringUtils.linkifySlackUsername;
 
     it('formats usernames for Slack linkification', () => {
       const username = 'somePerson';
