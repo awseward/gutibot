@@ -1,7 +1,7 @@
 "use strict";
 
-require('../testHelper');
-const stringUtils = require('../../src/stringUtils.js');
+require('../../testHelper');
+const stringUtils = require('../../../src/utils/stringUtils.js');
 
 describe('stringUtils', () => {
   describe("splitWord", () => {

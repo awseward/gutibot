@@ -1,8 +1,8 @@
 "use strict";
 
-const strUtils = require('./stringUtils');
 const gutiBot = require('./gutiBot');
 const slack = require('./utils/slackUtils');
+const strUtils = require('./utils/stringUtils');
 
 function getMatches(str) {
   const pattern = /(\w{2,}er)[^\w]+|(\w{2,}er)$/gi;
