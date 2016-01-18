@@ -1,41 +1,43 @@
 "use strict";
 
+function _getBody(request) {
+  return request.body;
+}
+
 const incomingWebhook = {
 };
 
 const outgoingWebhook = {
-  getBody(request) {
-    return request.body;
-  },
+  getBody: _getBody,
   getToken(request) {
-    return getBody(request).token;
+    return _getBody(request).token;
   },
   getTeamId(request) {
-    return getBody(request).team_id;
+    return _getBody(request).team_id;
   },
   getTeamDomain(request) {
-    return getBody(request).team_domain;
+    return _getBody(request).team_domain;
   },
   getChannelId(request) {
-    return getBody(request).channel_id;
+    return _getBody(request).channel_id;
   },
   getChannelName(request) {
-    return getBody(request).channel_name;
+    return _getBody(request).channel_name;
   },
   getTimestamp(request) {
-    return getBody(request).timestamp;
+    return _getBody(request).timestamp;
   },
   getUserId(request) {
-    return getBody(request).user_id;
+    return _getBody(request).user_id;
   },
   getUsername(request) {
-    return getBody(request).user_name;
+    return _getBody(request).user_name;
   },
   getText(request) {
-    return getBody(request).text;
+    return _getBody(request).text;
   },
   getTriggerWord(request) {
-    return getBody(request).trigger_word;
+    return _getBody(request).trigger_word;
   },
   createResponse(message) {
     return {
