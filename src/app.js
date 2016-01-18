@@ -11,7 +11,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.send('Hello! This is the Gutibot. Are you lost?');
+  res.send('Hello! This is gutibot. Are you lost?');
 });
 
 app.post("/doesheknower", barelyBot);
