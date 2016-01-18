@@ -36,24 +36,44 @@ function _isTwentyFivePercentChance() {
   return _getRandomInt(0, 4) === 0;
 }
 
-// NOTE: This will probably not be quite as simple and straightforward since it
-// will be happening asynchronously, but this will do as a placeholder for the
-// time-being
 function _isDictionaryWord(word) {
-  // TODO: Actually implement this.
-  return _isTwentyFivePercentChance();
-}
-
-function _getDictionaryWords(words) {
-  return words.filter(_isDictionaryWord);
+  // TODO: Actually implement
+  return new Promise((resolve, reject) => {
+    resolve({
+      word,
+      isDictionary: _isTwentyFivePercentChance(),
+    });
+  });
 }
 
 function _isSlackbot(username) {
   return username === 'slackbot';
 }
 
+// TODO: (Rename / break up) this function
 function _performDictionaryLookupsAndMaybePostBack(request, matches) {
-  // TODO
+  const channelName = slack.outgoingWebhook.getChannelName(request);
+
+  return Promise.all(matches.map(_isDictionaryWord))
+    .then(results => {
+      const dictionary = results
+        .filter(res => res.isDictionary)
+        .map(res => res.word);
+
+      const notDictionary = results
+        .filter(res => !res.isDictionary)
+        .map(res => res.word);
+
+      const sendMessage = gutiBot.respondViaWebhook.bind(
+        null,
+        "https://hooks.slack.com/services/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",
+        `#${channelName}`
+      );
+
+      sendMessage('Dictionary: ' + dictionary.join(', '));
+
+      sendMessage('Not dictionary: ' + notDictionary.join(', '));
+    });
 }
 
 function bot(req, res) {
