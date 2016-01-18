@@ -1,12 +1,12 @@
 "use strict";
 
-const srcPath = "../../src/barelyBot";
+jest.autoMockOff();
 
-jest.dontMock(srcPath);
+const barelyBot = require("../../src/barelyBot");
 
 describe("getMatches", () => {
   it("finds matches", () => {
-    const getMatches = require(srcPath).getMatches;
+    const getMatches = barelyBot.getMatches;
     const erWord = "cheeseburger";
     const expected = [erWord];
     const actual = getMatches(erWord);

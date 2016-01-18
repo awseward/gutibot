@@ -1,5 +1,8 @@
 "use strict";
 
+const slack = require('./utils/slackUtils');
+const axios = require('axios');
+
 function _ok(response) {
   return response.status(200);
 }
@@ -9,15 +12,15 @@ function respondOk(response) {
 }
 
 function respondWith(response, message) {
-  return _ok(response).json({
-    text: message,
-  });
+  const payload = slack.outgoingWebhook.createResponse(message);
+
+  return _ok(response).json(payload);
 }
 
 function respondViaWebhook(hookUrl, channel, message) {
   // NOTE: This require is temporary until
   // axios plays well with jest
-  return require("axios").post(hookUrl, {
+  return axios.post(hookUrl, {
     channel,
     text: message,
   });
