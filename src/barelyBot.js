@@ -66,7 +66,7 @@ function _performDictionaryLookupsAndMaybePostBack(request, matches) {
 
       const sendMessage = gutiBot.respondViaWebhook.bind(
         null,
-        "https://hooks.slack.com/services/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",
+        "https://hooks.slack.com/services/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",
         `#${channelName}`
       );
 
