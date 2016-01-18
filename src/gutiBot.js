@@ -25,17 +25,18 @@ function respondWith(response, message) {
   return _ok(response).json(payload);
 }
 
-function respondViaWebhook(hookUrl, channel, message) {
+function respondViaWebhook(hookUrl, destination, message) {
+  // TODO: Building this payload should probably be moved to slackUtils...
   return axios.post(hookUrl, {
-    channel,
+    channel: destination,
     text: message,
   });
 }
 
-function respondViaDefaultWebhook(channel, message) {
+function respondViaDefaultWebhook(destination, message) {
   const hookUrl = _getIncomingWebhookUrl();
 
-  return respondViaWebhook(hookUrl, channel, message);
+  return respondViaWebhook(hookUrl, destination, message);
 }
 
 module.exports = {
