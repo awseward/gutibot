@@ -53,26 +53,24 @@ function _isSlackbot(username) {
 // TODO: (Rename / break up) this function
 function _performDictionaryLookupsAndMaybePostBack(request, matches) {
   const channelName = slack.outgoingWebhook.getChannelName(request);
+  const webhookUrl = "https://hooks.slack.com/services/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";
+  const sendMessage = gutiBot.respondViaWebhook.bind(
+    null,
+    webhookUrl,
+    `#${channelName}`
+  );
 
   return Promise.all(matches.map(_isDictionaryWord))
     .then(results => {
-      const dictionary = results
-        .filter(res => res.isDictionary)
-        .map(res => res.word);
+      const dictionaryWords = results
+      .filter(res => res.isDictionary)
+      .map(res => res.word);
 
-      const notDictionary = results
-        .filter(res => !res.isDictionary)
-        .map(res => res.word);
+      if (dictionaryWords.some(x => x)) {
+        const message = `TODO: Message for '${dictionaryWords.join(', ')}'`;
 
-      const sendMessage = gutiBot.respondViaWebhook.bind(
-        null,
-        "https://hooks.slack.com/services/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",
-        `#${channelName}`
-      );
-
-      sendMessage('Dictionary: ' + dictionary.join(', '));
-
-      sendMessage('Not dictionary: ' + notDictionary.join(', '));
+        sendMessage(message);
+      }
     });
 }
 
