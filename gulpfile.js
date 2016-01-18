@@ -15,7 +15,7 @@
   });
 
   gulp.task("build", ["clean"], function() {
-    return gulp.src("src/*.js")
+    return gulp.src("src/**/*.js")
       .pipe(babel())
       .pipe(gulp.dest("./dist"));
   });
