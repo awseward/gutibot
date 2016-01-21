@@ -27,8 +27,8 @@ function _getUsers() {
   return axios.get(url, params);
 }
 
-function bot(req, res) {
-  const message = req.body;
+function bot(request) {
+  const message = request.body;
   const flipperId = _getFlipperId();
 
   if (!_messageIsFromFlipper(message, flipperId)) { return res.status(200); }
@@ -46,10 +46,6 @@ function bot(req, res) {
         console.log(`The flipper is ${flipperCandidates[0].real_name}!!!`);
       }
     });
-
-  return res.status(200).end();
 }
 
-module.exports = {
-  bot,
-};
+module.exports = bot;
