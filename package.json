@@ -4,6 +4,7 @@
   "description": "Amazing slackbot",
   "main": "app.js",
   "scripts": {
+    "start": "gulp build && node dist/app.js",
     "test": "jest --verbose"
   },
   "author": "Andrew Seward",
