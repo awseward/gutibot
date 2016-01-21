@@ -1,6 +1,7 @@
 "use strict";
 
-const strUtils = require('./stringUtils');
+const slackOut = require('./utils/slackUtils').outgoingWebhook;
+const strUtils = require('./utils/stringUtils');
 
 function getMatches(str) {
   const pattern = /(\w{2,}er)[^\w]+|(\w{2,}er)$/gi;
@@ -8,7 +9,7 @@ function getMatches(str) {
   return str.match(pattern) || [];
 }
 
-function cleanMatches(matches) {
+function _cleanMatches(matches) {
   const pattern = /[^\w]+$/;
 
   return matches.map(str => {
@@ -16,50 +17,49 @@ function cleanMatches(matches) {
   });
 }
 
-function splitByEr(word) {
+function _splitByEr(word) {
   return strUtils.splitWord(word, "er");
 }
 
-function formatSplitWordParts(parts) {
+function _formatSplitWordParts(parts) {
   const capFirst = strUtils.capitalizeFirstCharacter;
 
   return `${capFirst(parts[0])} '${parts[1]}`;
 }
 
-function getRandomInt(min, max) {
+function _getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function isTwentyFivePercentChance() {
-  return getRandomInt(0, 4) === 0;
+function _isTwentyFivePercentChance() {
+  return _getRandomInt(0, 4) === 0;
 }
 
-function shouldRespond(username, matches) {
-  return username !== 'slackbot'
-    && matches.length !== 0
-    && isTwentyFivePercentChance();
+function _shouldRespond(matches) {
+  return matches.length !== 0 && _isTwentyFivePercentChance();
 }
 
-function bot(req, res) {
-  const text = req.body.text;
-  const username = req.body.user_name;
-  const matches = cleanMatches(getMatches(text));
+function _buildMessage(username, matches) {
   const linkify = strUtils.linkifySlackUsername;
 
-  if (!shouldRespond(username, matches)) {
-    return res.status(200).end();
-  }
-
   const blankEr = matches
-    .map(splitByEr)
-    .map(formatSplitWordParts)
+    .map(_splitByEr)
+    .map(_formatSplitWordParts)
     .join(" ");
 
-  const payload = {
-    text: `${linkify(username)}: ${blankEr}?! I barely know 'er!`,
-  };
+  return `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+}
 
-  return res.status(200).json(payload);
+function bot(request, respondOk, respondWith) {
+  const text = slackOut.getText(request);
+  const username = slackOut.getUsername(request);
+  const matches = _cleanMatches(getMatches(text));
+
+  if (!_shouldRespond(matches)) { return respondOk(); }
+
+  const message = _buildMessage(username, matches);
+
+  return respondWith(message);
 }
 
 module.exports = {

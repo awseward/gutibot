@@ -1,9 +1,10 @@
 {
   "name": "gutibot",
   "version": "0.0.0",
-  "description": "Amazing slackbot",
+  "description": "A (mostly) useless slackbot",
   "main": "app.js",
   "scripts": {
+    "start": "gulp build && node dist/app.js",
     "test": "jest --verbose"
   },
   "author": "Andrew Seward",
