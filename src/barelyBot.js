@@ -35,10 +35,8 @@ function _isTwentyFivePercentChance() {
   return _getRandomInt(0, 4) === 0;
 }
 
-function _shouldRespond(username, matches) {
-  return username !== 'slackbot'
-    && matches.length !== 0
-    && _isTwentyFivePercentChance();
+function _shouldRespond(matches) {
+  return matches.length !== 0 && _isTwentyFivePercentChance();
 }
 
 function bot(request, respondOk, respondWith) {
@@ -47,9 +45,7 @@ function bot(request, respondOk, respondWith) {
   const matches = _cleanMatches(getMatches(text));
   const linkify = strUtils.linkifySlackUsername;
 
-  if (!_shouldRespond(username, matches)) {
-    return respondOk();
-  }
+  if (!_shouldRespond(matches)) { return respondOk(); }
 
   const blankEr = matches
     .map(_splitByEr)
