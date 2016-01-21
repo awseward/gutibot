@@ -3,7 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-const gutibot = require("./gutiBot");
+const gutiBot = require("./gutiBot");
 
 const barelyBot = require("./barelyBot").bot;
 const defineBot = require("./defineBot");
@@ -18,9 +18,10 @@ app.get('/', (req, res) => {
   res.send('Hello! This is gutibot. Are you lost?');
 });
 
+app.post("/barely", gutiBot.doSync(barelyBot));
 app.post("/define", defineBot);
-app.post("/doesheknower", gutibot.doSync(barelyBot));
-app.post("/wind", gutibot.doSync(windBot));
+app.post("/wind", gutiBot.doSync(windBot));
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
