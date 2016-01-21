@@ -39,20 +39,25 @@ function _shouldRespond(matches) {
   return matches.length !== 0 && _isTwentyFivePercentChance();
 }
 
-function bot(request, respondOk, respondWith) {
-  const text = slackOut.getText(request);
-  const username = slackOut.getUsername(request);
-  const matches = _cleanMatches(getMatches(text));
+function _buildMessage(username, matches) {
   const linkify = strUtils.linkifySlackUsername;
-
-  if (!_shouldRespond(matches)) { return respondOk(); }
 
   const blankEr = matches
     .map(_splitByEr)
     .map(_formatSplitWordParts)
     .join(" ");
 
-  const message = `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+  return `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+}
+
+function bot(request, respondOk, respondWith) {
+  const text = slackOut.getText(request);
+  const username = slackOut.getUsername(request);
+  const matches = _cleanMatches(getMatches(text));
+
+  if (!_shouldRespond(matches)) { return respondOk(); }
+
+  const message = _buildMessage(username, matches);
 
   return respondWith(message);
 }
