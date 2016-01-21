@@ -15,6 +15,10 @@ function _getBotUserApiToken() {
   return process.env.SLACK_BOT_USER_API_TOKEN;
 }
 
+function _requestIsFromSlackbot(request) {
+  return slack.outgoingWebhook.getUsername(request) === 'slackbot';
+}
+
 function _respondOk(response) {
   return _ok(response).end();
 }
@@ -41,6 +45,8 @@ function respondViaDefaultWebhook(destination, message) {
 
 function doSync(botFn) {
   return (request, response) => {
+    if (_requestIsFromSlackbot(request)) { return _respondOk(response); }
+
     return botFn(
       request,
       () => _respondOk(response),
@@ -54,6 +60,8 @@ function doSync(botFn) {
 
 function doAsync(botFn) {
   return (request, response) => {
+    if (_requestIsFromSlackbot(request)) { return _respondOk(response); }
+
     botFn(request);
     return respondOk(response);
   };
@@ -61,6 +69,8 @@ function doAsync(botFn) {
 
 function doAsyncWithMessage(botFn, message) {
   return (request, response) => {
+    if (_requestIsFromSlackbot(request)) { return _respondOk(response); }
+
     botFn(request);
     return respondWith(response, message);
   };

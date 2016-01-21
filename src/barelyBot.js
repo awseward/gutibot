@@ -1,6 +1,6 @@
 "use strict";
 
-const slack = require('./utils/slackUtils');
+const slackOut = require('./utils/slackUtils').outgoingWebhook;
 const strUtils = require('./utils/stringUtils');
 
 function getMatches(str) {
@@ -35,28 +35,29 @@ function _isTwentyFivePercentChance() {
   return _getRandomInt(0, 4) === 0;
 }
 
-function _shouldRespond(username, matches) {
-  return username !== 'slackbot'
-    && matches.length !== 0
-    && _isTwentyFivePercentChance();
+function _shouldRespond(matches) {
+  return matches.length !== 0 && _isTwentyFivePercentChance();
 }
 
-function bot(request, respondOk, respondWith) {
-  const text = request.body.text;
-  const username = request.body.user_name;
-  const matches = _cleanMatches(getMatches(text));
+function _buildMessage(username, matches) {
   const linkify = strUtils.linkifySlackUsername;
-
-  if (!_shouldRespond(username, matches)) {
-    return respondOk();
-  }
 
   const blankEr = matches
     .map(_splitByEr)
     .map(_formatSplitWordParts)
     .join(" ");
 
-  const message = `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+  return `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+}
+
+function bot(request, respondOk, respondWith) {
+  const text = slackOut.getText(request);
+  const username = slackOut.getUsername(request);
+  const matches = _cleanMatches(getMatches(text));
+
+  if (!_shouldRespond(matches)) { return respondOk(); }
+
+  const message = _buildMessage(username, matches);
 
   return respondWith(message);
 }
