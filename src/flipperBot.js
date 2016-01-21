@@ -2,6 +2,10 @@
 
 const axios = require('axios');
 
+// TODO
+// - [ ] Persist flipper for 24hr intervals (regardless of deploys)
+// - [ ] Post reactions on messages
+
 function _getSlackToken() {
   return process.env.SLACK_API_TOKEN || 'SLACK_API_TOKEN not set';
 }
