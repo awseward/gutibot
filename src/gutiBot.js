@@ -63,7 +63,7 @@ function doAsync(botFn) {
     if (_requestIsFromSlackbot(request)) { return _respondOk(response); }
 
     botFn(request);
-    return respondOk(response);
+    return _respondOk(response);
   };
 }
 
@@ -72,7 +72,7 @@ function doAsyncWithMessage(botFn, message) {
     if (_requestIsFromSlackbot(request)) { return _respondOk(response); }
 
     botFn(request);
-    return respondWith(response, message);
+    return _respondOkWithMessage(response, message);
   };
 }
 
