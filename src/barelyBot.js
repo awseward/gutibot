@@ -1,6 +1,5 @@
 "use strict";
 
-const gutiBot = require('./gutiBot');
 const slack = require('./utils/slackUtils');
 const strUtils = require('./utils/stringUtils');
 
@@ -42,14 +41,14 @@ function _shouldRespond(username, matches) {
     && _isTwentyFivePercentChance();
 }
 
-function bot(req, res) {
-  const text = req.body.text;
-  const username = req.body.user_name;
+function bot(request, respondOk, respondWith) {
+  const text = request.body.text;
+  const username = request.body.user_name;
   const matches = _cleanMatches(getMatches(text));
   const linkify = strUtils.linkifySlackUsername;
 
   if (!_shouldRespond(username, matches)) {
-    return gutiBot.respondOk(res);
+    return respondOk();
   }
 
   const blankEr = matches
@@ -59,7 +58,7 @@ function bot(req, res) {
 
   const message = `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
 
-  return gutiBot.respondWith(res, message);
+  return respondWith(message);
 }
 
 module.exports = {

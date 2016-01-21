@@ -15,11 +15,11 @@ function _getBotUserApiToken() {
   return process.env.SLACK_BOT_USER_API_TOKEN;
 }
 
-function respondOk(response) {
+function _respondOk(response) {
   return _ok(response).end();
 }
 
-function respondWith(response, message) {
+function _respondOkWithMessage(response, message) {
   const payload = slack.outgoingWebhook.createResponse(message);
 
   return _ok(response).json(payload);
@@ -39,9 +39,39 @@ function respondViaDefaultWebhook(destination, message) {
   return respondViaWebhook(hookUrl, destination, message);
 }
 
+function doSync(botFn) {
+  return (request, response) => {
+    return botFn(
+      request,
+      () => _respondOk(response),
+      message => _respondOkWithMessage(response, message)
+    );
+  };
+}
+
+// NOTE: Neither of the following `doAsync` functions has been tested, so should
+// be considered suspect for the time-being
+
+function doAsync(botFn) {
+  return (request, response) => {
+    botFn(request);
+    return respondOk(response);
+  };
+}
+
+function doAsyncWithMessage(botFn, message) {
+  return (request, response) => {
+    botFn(request);
+    return respondWith(response, message);
+  };
+}
+
+// ============================================================================
+
 module.exports = {
-  respondOk,
-  respondWith,
+  doAsync,
+  doAsyncWithMessage,
   respondViaWebhook,
   respondViaDefaultWebhook,
+  doSync,
 };

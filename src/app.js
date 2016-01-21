@@ -2,6 +2,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+
+const gutibot = require("./gutiBot");
 const barelyBot = require("./barelyBot").bot;
 const defineBot = require("./defineBot");
 
@@ -14,7 +16,7 @@ app.get('/', (req, res) => {
   res.send('Hello! This is gutibot. Are you lost?');
 });
 
-app.post("/doesheknower", barelyBot);
+app.post("/doesheknower", gutibot.doSync(barelyBot));
 app.post("/define", defineBot);
 
 app.use((err, req, res, next) => {
