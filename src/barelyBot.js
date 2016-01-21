@@ -1,6 +1,6 @@
 "use strict";
 
-const slack = require('./utils/slackUtils');
+const slackOut = require('./utils/slackUtils').outgoingWebhook;
 const strUtils = require('./utils/stringUtils');
 
 function getMatches(str) {
@@ -40,8 +40,8 @@ function _shouldRespond(matches) {
 }
 
 function bot(request, respondOk, respondWith) {
-  const text = request.body.text;
-  const username = request.body.user_name;
+  const text = slackOut.getText(request);
+  const username = slackOut.getUsername(request);
   const matches = _cleanMatches(getMatches(text));
   const linkify = strUtils.linkifySlackUsername;
 
