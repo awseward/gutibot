@@ -1,5 +1,10 @@
 "use strict";
 
 module.exports = {
-  // TODO
+  createMessagePayload(destination, message) {
+    return {
+      channel: destination,
+      text: message,
+    };
+  },
 };
