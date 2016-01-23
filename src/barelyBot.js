@@ -1,5 +1,6 @@
 "use strict";
 
+const slackCommon = require('./utils/slackUtils').common;
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
 const strUtils = require('./utils/stringUtils');
 
@@ -40,14 +41,14 @@ function _shouldRespond(matches) {
 }
 
 function _buildMessage(username, matches) {
-  const linkify = strUtils.linkifySlackUsername;
+  const linkifiedUsername = slackCommon.linkifyUsername(username);
 
   const blankEr = matches
     .map(_splitByEr)
     .map(_formatSplitWordParts)
     .join(" ");
 
-  return `${linkify(username)}: ${blankEr}?! I barely know 'er!`;
+  return `${linkifiedUsername}: ${blankEr}?! I barely know 'er!`;
 }
 
 function bot(request, respondOk, respondWith) {

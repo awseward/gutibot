@@ -1,6 +1,7 @@
 "use strict";
 
-const slack = require('./utils/slackUtils');
+const slackOut = require('./utils/slackUtils').outgoingWebhook;
+const slackIn = require('./utils/slackUtils').incomingWebhook;
 const axios = require('axios');
 
 function _ok(response) {
@@ -16,7 +17,7 @@ function _getBotUserApiToken() {
 }
 
 function _requestIsFromSlackbot(request) {
-  return slack.outgoingWebhook.getUsername(request) === 'slackbot';
+  return slackOut.getUsername(request) === 'slackbot';
 }
 
 function _respondOk(response) {
@@ -24,17 +25,15 @@ function _respondOk(response) {
 }
 
 function _respondOkWithMessage(response, message) {
-  const payload = slack.outgoingWebhook.createResponse(message);
+  const payload = slackOut.createResponse(message);
 
   return _ok(response).json(payload);
 }
 
 function respondViaWebhook(hookUrl, destination, message) {
-  // TODO: Building this payload should probably be moved to slackUtils...
-  return axios.post(hookUrl, {
-    channel: destination,
-    text: message,
-  });
+  const payload = slackIn.createMessagePayload(destination, message);
+
+  return axios.post(hookUrl, payload);
 }
 
 function respondViaDefaultWebhook(destination, message) {
