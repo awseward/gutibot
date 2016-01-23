@@ -18,7 +18,4 @@ function capitalizeFirstCharacter(str) {
 module.exports = {
   capitalizeFirstCharacter,
   splitWord,
-
-  // DEPRECATED
-  linkifySlackUsername: require('./slackUtils').common.linkifyUsername,
 };
