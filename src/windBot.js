@@ -1,12 +1,9 @@
 "use strict";
 
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
+const regex = require('./utils/regexUtils');
 
-function _containsWind(str) {
-  // NOTE: This will return an array on success, but that is truthy, so that's
-  // enough to go on... (Still not sure how I feel about this, though)
-  return (str || '').match(/(^|\s)wind(\s|$|\W)/i);
-}
+const _containsWind = regex.matchWholeWord.bind(null, 'wind');
 
 function bot(request, respondOk, respondWith) {
   const text = slackOut.getText(request);
