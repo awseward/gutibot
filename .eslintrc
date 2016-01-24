@@ -1,10 +1,5 @@
 {
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "destructuring": true,
-    "objectLiteralShorthandMethods": true
-  },
+  "extends": "airbnb",
   "env": {
     "es6": true,
     "jasmine": true,
