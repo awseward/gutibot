@@ -1,40 +1,40 @@
 "use strict";
 
-function _getBody(request) {
+function getBody(request) {
   return request.body;
 }
 
 module.exports = {
-  getBody: _getBody,
+  getBody,
   getToken(request) {
-    return _getBody(request).token;
+    return getBody(request).token;
   },
   getTeamId(request) {
-    return _getBody(request).team_id;
+    return getBody(request).team_id;
   },
   getTeamDomain(request) {
-    return _getBody(request).team_domain;
+    return getBody(request).team_domain;
   },
   getChannelId(request) {
-    return _getBody(request).channel_id;
+    return getBody(request).channel_id;
   },
   getChannelName(request) {
-    return _getBody(request).channel_name;
+    return getBody(request).channel_name;
   },
   getTimestamp(request) {
-    return _getBody(request).timestamp;
+    return getBody(request).timestamp;
   },
   getUserId(request) {
-    return _getBody(request).user_id;
+    return getBody(request).user_id;
   },
   getUsername(request) {
-    return _getBody(request).user_name;
+    return getBody(request).user_name;
   },
   getText(request) {
-    return _getBody(request).text;
+    return getBody(request).text;
   },
   getTriggerWord(request) {
-    return _getBody(request).trigger_word;
+    return getBody(request).trigger_word;
   },
   createResponse(message) {
     return {
