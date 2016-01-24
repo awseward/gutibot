@@ -1,17 +1,18 @@
 "use strict";
 
-require('../testHelper');
-const barelyBot = require('../../src/barelyBot');
+import barelyBot, { getMatches } from '../../src/barelyBot';
 
-describe("getMatches", () => {
-  it("finds matches", () => {
-    const getMatches = barelyBot.getMatches;
-    const erWord = "cheeseburger";
-    const expected = [erWord];
-    const actual = getMatches(erWord);
+describe('barelyBot', () => {
+  describe("getMatches", () => {
+    it("finds matches", () => {
+      const erWord = "cheeseburger";
+      const expected = [erWord];
+      const actual = getMatches(erWord);
 
-    expect(actual).toEqual(expected);
+      expect(actual).toEqual(expected);
+    });
   });
+
+  // TODO: add more...
 });
 
-// TODO: add more...

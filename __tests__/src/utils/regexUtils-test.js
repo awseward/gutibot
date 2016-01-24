@@ -1,12 +1,9 @@
 "use strict";
 
-require('../../testHelper');
-const regexUtils = require('../../../src/utils/regexUtils');
+import { matchWholeWord } from '../../../src/utils/regexUtils';
 
 describe('regexUtils', () => {
   describe('matchWholeWord', () => {
-    const matchWholeWord = regexUtils.matchWholeWord;
-
     it('returns truthy on success', () => {
       const str = 'This is a contrived example.';
       const word = 'This';

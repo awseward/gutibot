@@ -1,7 +1,6 @@
 "use strict";
 
-require('../../testHelper');
-const stringUtils = require('../../../src/utils/stringUtils');
+import stringUtils from '../../../src/utils/stringUtils';
 
 describe('stringUtils', () => {
   describe("splitWord", () => {

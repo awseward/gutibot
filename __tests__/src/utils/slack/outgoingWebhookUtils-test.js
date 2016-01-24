@@ -1,7 +1,6 @@
 "use strict";
 
-require('../../../testHelper');
-const slackOut = require('../../../../src/utils/slack/outgoingWebhookUtils');
+import slackOut from '../../../../src/utils/slack/outgoingWebhookUtils';
 
 function _getRequest() {
   return {

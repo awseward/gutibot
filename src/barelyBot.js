@@ -1,8 +1,10 @@
 "use strict";
 
-const slackCommon = require('./utils/slackUtils').common;
+import { linkifyUsername } from './utils/slack/commonUtils';
+import strUtils from './utils/stringUtils';
+
+// TODO
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
-const strUtils = require('./utils/stringUtils');
 
 function getMatches(str) {
   const pattern = /(\w{2,}er)[^\w]+|(\w{2,}er)$/gi;
@@ -41,7 +43,7 @@ function _shouldRespond(matches) {
 }
 
 function _buildMessage(username, matches) {
-  const linkifiedUsername = slackCommon.linkifyUsername(username);
+  const linkifiedUsername = linkifyUsername(username);
 
   const blankEr = matches
     .map(_splitByEr)
@@ -63,7 +65,7 @@ function bot(request, respondOk, respondWith) {
   return respondWith(message);
 }
 
-module.exports = {
+export {
   getMatches,
-  bot,
+  bot as default,
 };

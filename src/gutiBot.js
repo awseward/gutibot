@@ -1,8 +1,10 @@
 "use strict";
 
+import httpClient from './utils/httpClient';
+
+// TODO
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
 const slackIn = require('./utils/slackUtils').incomingWebhook;
-const httpClient = require('./utils/httpClient');
 
 function _ok(response) {
   return response.status(200);
@@ -77,7 +79,7 @@ function doAsyncWithMessage(botFn, message) {
 
 // ============================================================================
 
-module.exports = {
+export {
   doAsync,
   doAsyncWithMessage,
   respondViaWebhook,

@@ -1,9 +1,11 @@
 "use strict";
 
-const slackOut = require('./utils/slackUtils').outgoingWebhook;
-const regex = require('./utils/regexUtils');
+import { matchWholeWord } from './utils/regexUtils';
 
-const _containsWind = regex.matchWholeWord.bind(null, 'wind');
+// TODO
+const slackOut = require('./utils/slackUtils').outgoingWebhook;
+
+const _containsWind = matchWholeWord.bind(null, 'wind');
 
 function bot(request, respondOk, respondWith) {
   const text = slackOut.getText(request);
@@ -13,4 +15,6 @@ function bot(request, respondOk, respondWith) {
   return respondWith('Can you paint with all the colors of the wiiiiind?');
 }
 
-module.exports = bot;
+export {
+  bot as default,
+};

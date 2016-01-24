@@ -1,13 +1,11 @@
 "use strict";
+import express from 'express';
+import bodyParser from 'body-parser';
 
-const express = require("express");
-const bodyParser = require("body-parser");
-
-const gutiBot = require("./gutiBot");
-
-const barelyBot = require("./barelyBot").bot;
-const defineBot = require("./defineBot");
-const windBot = require("./windBot");
+import { doSync } from './gutiBot';
+import barelyBot from './barelyBot';
+import defineBot from './defineBot';
+import windBot from './windBot';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,9 +16,9 @@ app.get('/', (req, res) => {
   res.send('Hello! This is gutibot. Are you lost?');
 });
 
-app.post("/barely", gutiBot.doSync(barelyBot));
+app.post("/barely", doSync(barelyBot));
 app.post("/define", defineBot);
-app.post("/wind", gutiBot.doSync(windBot));
+app.post("/wind", doSync(windBot));
 
 
 app.use((err, req, res, next) => {

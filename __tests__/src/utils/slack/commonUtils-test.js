@@ -1,12 +1,11 @@
 "use strict";
 
-require('../../../testHelper');
-const common = require('../../../../src/utils/slack/commonUtils');
+import {
+  linkifyUsername as linkify,
+} from '../../../../src/utils/slack/commonUtils';
 
 describe('slack commonUtils', () => {
   describe('linkifyUsername', () => {
-    const linkify = common.linkifyUsername;
-
     it('formats usernames for Slack linkification', () => {
       const username = 'somePerson';
       const expected = '<@somePerson|somePerson>';
