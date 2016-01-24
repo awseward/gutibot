@@ -1,22 +1,20 @@
-(function() {
-  "use strict";
+'use strict';
 
-  var babel = require("gulp-babel");
-  var del = require("del");
-  var gulp = require("gulp");
-  var gulpList = require("gulp-task-listing");
+const babel = require('gulp-babel');
+const del = require('del');
+const gulp = require('gulp');
+const gulpList = require('gulp-task-listing');
 
-  gulp.task("help", gulpList);
+gulp.task('help', gulpList);
 
-  gulp.task("default", ["help"]);
+gulp.task('default', ['help']);
 
-  gulp.task("clean", function() {
-    return del(["./dist/*"]);
-  });
+gulp.task('clean', function() {
+  return del(['./dist/*']);
+});
 
-  gulp.task("build", ["clean"], function() {
-    return gulp.src("src/**/*.js")
-      .pipe(babel())
-      .pipe(gulp.dest("./dist"));
-  });
-})();
+gulp.task('build', ['clean'], function() {
+  return gulp.src('src/**/*.js')
+    .pipe(babel())
+    .pipe(gulp.dest('./dist'));
+});
