@@ -1,10 +1,10 @@
 "use strict";
 
 import httpClient from './utils/httpClient';
-
-// TODO
-const slackOut = require('./utils/slackUtils').outgoingWebhook;
-const slackIn = require('./utils/slackUtils').incomingWebhook;
+import {
+  incomingWebhook as slackIn,
+  outgoingWebhook as slackOut,
+} from './utils/slackUtils';
 
 function _ok(response) {
   return response.status(200);
