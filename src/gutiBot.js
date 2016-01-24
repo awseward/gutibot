@@ -2,7 +2,7 @@
 
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
 const slackIn = require('./utils/slackUtils').incomingWebhook;
-const axios = require('axios');
+const httpClient = require('./utils/httpClient');
 
 function _ok(response) {
   return response.status(200);
@@ -33,7 +33,7 @@ function _respondOkWithMessage(response, message) {
 function respondViaWebhook(hookUrl, destination, message) {
   const payload = slackIn.createMessagePayload(destination, message);
 
-  return axios.post(hookUrl, payload);
+  return httpClient.post(hookUrl, payload);
 }
 
 function respondViaDefaultWebhook(destination, message) {
