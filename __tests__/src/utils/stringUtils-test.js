@@ -1,6 +1,6 @@
 "use strict";
 
-import stringUtils from '../../../src/utils/stringUtils';
+import * as stringUtils from '../../../src/utils/stringUtils';
 
 describe('stringUtils', () => {
   describe("splitWord", () => {

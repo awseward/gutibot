@@ -1,7 +1,7 @@
 "use strict";
 
 import { linkifyUsername } from './utils/slack/commonUtils';
-import strUtils from './utils/stringUtils';
+import * as strUtils from './utils/stringUtils';
 
 // TODO
 const slackOut = require('./utils/slackUtils').outgoingWebhook;
