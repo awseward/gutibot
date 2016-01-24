@@ -1,13 +1,13 @@
 "use strict";
 
-const botUser = require('./slack/botUserUtils');
-const common = require('./slack/commonUtils');
-const incomingWebhook = require('./slack/incomingWebhookUtils');
-const outgoingWebhook = require('./slack/outgoingWebhookUtils');
+import { linkifyUsername } from './slack/commonUtils';
+import botUser from './slack/botUserUtils';
+import incomingWebhook from './slack/incomingWebhookUtils';
+import outgoingWebhook from './slack/outgoingWebhookUtils';
 
 module.exports = {
   botUser,
-  common,
+  common: { linkifyUsername },
   incomingWebhook,
   outgoingWebhook,
 };

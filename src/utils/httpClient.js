@@ -1,7 +1,7 @@
 "use strict";
 
-const axios = require('axios');
-const superagent = require('superagent');
+import axios from 'axios';
+import superagent from 'superagent';
 
 function post(url, payload) {
   // TODO: switch this to superagent...?
@@ -29,7 +29,10 @@ function postForm(url, payload) {
   return _wrapSuperAgentInPromise(request);
 }
 
-module.exports = {
+const defExport = { post, postForm };
+export {
   post,
   postForm,
+
+  defExport as default,
 };

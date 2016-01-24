@@ -36,6 +36,7 @@
     "jest-cli": "^0.7.1"
   },
   "jest": {
+    "setupEnvScriptFile": "__tests__/testHelper.js",
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "testFileExtensions": [
       "js"

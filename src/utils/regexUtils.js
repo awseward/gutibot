@@ -1,9 +1,11 @@
 "use strict";
 
-module.exports = {
-  matchWholeWord(word, str) {
-    const pattern = `(^|\\s)${word}(\\W|$)`;
+function matchWholeWord(word, str) {
+  const pattern = `(^|\\s)${word}(\\W|$)`;
 
-    return (str || '').match(new RegExp(pattern, 'i'));
-  }
+  return (str || '').match(new RegExp(pattern, 'i'));
+}
+
+export {
+  matchWholeWord,
 };
