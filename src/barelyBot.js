@@ -1,10 +1,8 @@
 "use strict";
 
-import { linkifyUsername } from './utils/slack/commonUtils';
 import strUtils from './utils/stringUtils';
-
-// TODO
-const slackOut = require('./utils/slackUtils').outgoingWebhook;
+import { linkifyUsername } from './utils/slack/commonUtils';
+import { outgoingWebhook as slackOut } from './utils/slackUtils';
 
 function getMatches(str) {
   const pattern = /(\w{2,}er)[^\w]+|(\w{2,}er)$/gi;

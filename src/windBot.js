@@ -1,9 +1,7 @@
 "use strict";
 
 import { matchWholeWord } from './utils/regexUtils';
-
-// TODO
-const slackOut = require('./utils/slackUtils').outgoingWebhook;
+import { outgoingWebhook as slackOut } from './utils/slackUtils';
 
 const _containsWind = matchWholeWord.bind(null, 'wind');
 

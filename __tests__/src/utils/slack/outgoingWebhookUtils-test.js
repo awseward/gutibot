@@ -1,6 +1,6 @@
 "use strict";
 
-import slackOut from '../../../../src/utils/slack/outgoingWebhookUtils';
+import * as slackOut from '../../../../src/utils/slack/outgoingWebhookUtils';
 
 function _getRequest() {
   return {

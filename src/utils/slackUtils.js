@@ -1,13 +1,13 @@
 "use strict";
 
-import { linkifyUsername } from './slack/commonUtils';
-import botUser from './slack/botUserUtils';
-import incomingWebhook from './slack/incomingWebhookUtils';
-import outgoingWebhook from './slack/outgoingWebhookUtils';
+import * as botUser from './slack/botUserUtils';
+import * as common from './slack/commonUtils';
+import * as incomingWebhook from './slack/incomingWebhookUtils';
+import * as outgoingWebhook from './slack/outgoingWebhookUtils';
 
-module.exports = {
+export {
   botUser,
-  common: { linkifyUsername },
+  common,
   incomingWebhook,
   outgoingWebhook,
 };

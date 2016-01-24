@@ -1,6 +1,6 @@
 "use strict";
 
-import slack from '../../../src/utils/slackUtils';
+import * as slack from '../../../src/utils/slackUtils';
 
 describe('slackUtils', () => {
   describe('outgoingWebhook', () => {
