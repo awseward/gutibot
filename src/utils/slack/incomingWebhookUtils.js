@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function createMessagePayload(destination, message) {
   return {

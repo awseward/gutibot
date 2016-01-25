@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 import express from 'express';
 import bodyParser from 'body-parser';
 
@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
   res.send('Hello! This is gutibot. Are you lost?');
 });
 
-app.post("/barely", doSync(barelyBot));
-app.post("/define", defineBot);
-app.post("/wind", doSync(windBot));
+app.post('/barely', doSync(barelyBot));
+app.post('/define', defineBot);
+app.post('/wind', doSync(windBot));
 
 
 app.use((err, req, res, next) => {
@@ -26,4 +26,4 @@ app.use((err, req, res, next) => {
   res.status(400).send(err.message);
 });
 
-app.listen(port, () => console.log("Listening on port " + port));
+app.listen(port, () => console.log('Listening on port ' + port));

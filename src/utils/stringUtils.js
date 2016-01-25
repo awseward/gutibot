@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function splitWord(word, suffix) {
   if (!word) { return ['', suffix]; }

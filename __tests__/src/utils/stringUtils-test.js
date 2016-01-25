@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 
 import stringUtils from '../../../src/utils/stringUtils';
 
 describe('stringUtils', () => {
-  describe("splitWord", () => {
+  describe('splitWord', () => {
     const splitWord = stringUtils.splitWord;
 
-    it("splits the word by 'er'", () => {
+    it(`splits the word by 'er'`, () => {
       const word = 'boer';
       const expected = ['bo', 'er'];
       const actual = splitWord(word, 'er');
@@ -14,7 +14,7 @@ describe('stringUtils', () => {
       expect(actual).toEqual(expected);
     });
 
-    it("is always picks the last 'er'", () => {
+    it(`is always picks the last 'er'`, () => {
       const word = 'blunderer';
       const expected = ['blunder', 'er'];
       const actual = splitWord(word, 'er');
@@ -22,7 +22,7 @@ describe('stringUtils', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('returns ["", "er"] given an empty string', () => {
+    it(`returns ['', 'er'] given an empty string`, () => {
       const word = '';
       const expected = ['', 'er'];
       const actual = splitWord(word, 'er');
@@ -30,7 +30,7 @@ describe('stringUtils', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('returns ["", "er"] given null', () => {
+    it(`returns ['', 'er'] given null`, () => {
       const word = null;
       const expected = ['', 'er'];
       const actual = splitWord(word, 'er');
@@ -38,7 +38,7 @@ describe('stringUtils', () => {
       expect(actual).toEqual(expected);
     });
 
-    it('returns ["", "er"] given undefined', () => {
+    it(`returns ['', 'er'] given undefined`, () => {
       const word = undefined;
       const expected = ['', 'er'];
       const actual = splitWord(word, 'er');
