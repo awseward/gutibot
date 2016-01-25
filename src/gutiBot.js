@@ -5,17 +5,10 @@ import {
   incomingWebhook as slackIn,
   outgoingWebhook as slackOut,
 } from './utils/slackUtils';
+import { getSlackIncomingWebhookUrl } from './utils/envUtils';
 
 function _ok(response) {
   return response.status(200);
-}
-
-function _getIncomingWebhookUrl() {
-  return process.env.SLACK_INCOMING_WEBHOOK_URL;
-}
-
-function _getBotUserApiToken() {
-  return process.env.SLACK_BOT_USER_API_TOKEN;
 }
 
 function _requestIsFromSlackbot(request) {
@@ -39,7 +32,7 @@ function respondViaWebhook(hookUrl, destination, message) {
 }
 
 function respondViaDefaultWebhook(destination, message) {
-  const hookUrl = _getIncomingWebhookUrl();
+  const hookUrl = getIncomingWebhookUrl();
 
   return respondViaWebhook(hookUrl, destination, message);
 }
