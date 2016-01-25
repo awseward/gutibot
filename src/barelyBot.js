@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import strUtils from './utils/stringUtils';
 import { linkifyUsername } from './utils/slack/commonUtils';
@@ -14,12 +14,12 @@ function _cleanMatches(matches) {
   const pattern = /[^\w]+$/;
 
   return matches.map(str => {
-    return str.replace(pattern, "");
+    return str.replace(pattern, '');
   });
 }
 
 function _splitByEr(word) {
-  return strUtils.splitWord(word, "er");
+  return strUtils.splitWord(word, 'er');
 }
 
 function _formatSplitWordParts(parts) {
@@ -46,7 +46,7 @@ function _buildMessage(username, matches) {
   const blankEr = matches
     .map(_splitByEr)
     .map(_formatSplitWordParts)
-    .join(" ");
+    .join(' ');
 
   return `${linkifiedUsername}: ${blankEr}?! I barely know 'er!`;
 }

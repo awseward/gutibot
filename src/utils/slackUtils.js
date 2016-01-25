@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as botUser from './slack/botUserUtils';
 import * as common from './slack/commonUtils';

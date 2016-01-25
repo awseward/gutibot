@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as slackOut from '../../../../src/utils/slack/outgoingWebhookUtils';
 

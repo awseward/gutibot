@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import { matchWholeWord } from '../../../src/utils/regexUtils';
 

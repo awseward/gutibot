@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as slack from '../../../src/utils/slackUtils';
 
