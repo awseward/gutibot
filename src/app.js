@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import { doSync } from './gutiBot';
 import barelyBot from './barelyBot';
 import defineBot from './defineBot';
+import neckAndBackBot from './neckAndBackBot';
 import windBot from './windBot';
 
 const app = express();
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 
 app.post('/barely', doSync(barelyBot));
 app.post('/define', defineBot);
+app.post('/neckAndBack', doSync(neckAndBackBot));
 app.post('/wind', doSync(windBot));
 
 
