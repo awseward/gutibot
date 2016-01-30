@@ -4,7 +4,20 @@ const babel = require('gulp-babel');
 const del = require('del');
 const gulp = require('gulp');
 
-gulp.task('default', require('gulp-task-listing'));
+gulp.task('list', () => {
+  require('child_process').exec('gulp --tasks', (error, stdout, stderr) => {
+    console.log('stdout', stdout);
+
+    if (stderr && std != '') {
+      console.error(stderr);
+    }
+    if (error) {
+      console.error(error);
+    }
+  });
+});
+
+gulp.task('default', ['list']);
 
 gulp.task('clean', function() {
   return del(['./dist/*']);

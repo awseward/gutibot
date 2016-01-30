@@ -28,7 +28,6 @@
     "express": "^4.12.4",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
-    "gulp-task-listing": "^1.0.1",
     "superagent": "^1.7.1",
     "unirest": "^0.4.2"
   },
