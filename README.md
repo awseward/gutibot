@@ -1,1 +1,1 @@
-# gutibot [![Build Status](https://travis-ci.org/awseward/gutibot.svg?branch=master)](https://travis-ci.org/awseward/gutibot)
+# gutibot [![Build Status](https://travis-ci.org/awseward/gutibot.svg?branch=master)](https://travis-ci.org/awseward/gutibot) [![Circle CI](https://circleci.com/gh/awseward/gutibot.svg?style=svg)](https://circleci.com/gh/awseward/gutibot)
