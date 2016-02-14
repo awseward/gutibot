@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "gulp build && node dist/app.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "preversion": "npm test",
+    "version": "echo TODO: version hook",
+    "postversion": "echo TODO: postversion hook"
   },
   "author": "Andrew Seward",
   "license": "ISC",
