@@ -6,6 +6,10 @@
   "scripts": {
     "start": "gulp build && node dist/app.js",
     "test": "jest --verbose",
+
+    "deploy:production": "git push production HEAD",
+    "deploy:staging": "git push -f staging HEAD:master",
+
     "preversion": "npm test",
     "version": "echo TODO: version hook",
     "postversion": "echo TODO: postversion hook"
