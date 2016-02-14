@@ -6,7 +6,7 @@ const gulp = require('gulp');
 
 gulp.task('list', () => {
   require('child_process').exec('gulp --tasks', (error, stdout, stderr) => {
-    console.log('stdout', stdout);
+    console.log(stdout);
 
     if (stderr && std != '') {
       console.error(stderr);
@@ -19,11 +19,11 @@ gulp.task('list', () => {
 
 gulp.task('default', ['list']);
 
-gulp.task('clean', function() {
+gulp.task('clean', () => {
   return del(['./dist/*']);
 });
 
-gulp.task('build', ['clean'], function() {
+gulp.task('build', ['clean'], () => {
   return gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(gulp.dest('./dist'));
