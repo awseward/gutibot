@@ -6,13 +6,14 @@
   "scripts": {
     "start": "gulp build && node dist/app.js",
     "test": "jest --verbose",
-
     "deploy:production": "git push production HEAD",
     "deploy:staging": "git push -f staging HEAD:master",
-
+    "major": "npm version --no-git-tag-version -m 'v%s' major",
+    "minor": "npm version --no-git-tag-version -m 'v%s' minor",
+    "patch": "npm version --no-git-tag-version -m 'v%s' patch",
     "preversion": "npm test",
-    "version": "echo TODO: version hook",
-    "postversion": "echo TODO: postversion hook"
+    "version": "",
+    "postversion": "git push -u origin HEAD && git push --tags origin"
   },
   "author": "Andrew Seward",
   "license": "ISC",
