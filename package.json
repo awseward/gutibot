@@ -4,8 +4,10 @@
   "description": "A (mostly) useless slackbot",
   "main": "app.js",
   "scripts": {
-    "start": "gulp build && node dist/app.js",
+    "compile": "gulp build",
+    "start": "npm run compile && node dist/app.js",
     "test": "jest --verbose",
+    "test:integration": "npm run compile && mocha './__tests-integration__' --opts .mocha.opts",
     "deploy:production": "git push production HEAD",
     "deploy:staging": "git push -f staging HEAD:master",
     "deploy:all": "npm run deploy:staging && npm run deploy:production",
@@ -41,10 +43,14 @@
     "unirest": "^0.4.0"
   },
   "devDependencies": {
+    "babel-core": "^6.5.2",
     "babel-jest": "*",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
     "eslint": "^1.10.0",
     "eslint-config-airbnb": "^4.0.0",
-    "jest-cli": "^0.8.0"
+    "jest-cli": "^0.8.0",
+    "mocha": "^2.4.5"
   },
   "jest": {
     "setupEnvScriptFile": "__tests__/testHelper.js",

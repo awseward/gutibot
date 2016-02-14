@@ -1,0 +1,2 @@
+require('./chaiSettings');
+require('./startApp');
