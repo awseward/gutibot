@@ -31,3 +31,6 @@ dist
 
 # Overcommit
 .git-hooks
+
+# dotenv
+.env
