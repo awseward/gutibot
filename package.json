@@ -8,7 +8,7 @@
     "test": "jest --verbose",
     "deploy:production": "git push production HEAD",
     "deploy:staging": "git push -f staging HEAD:master",
-    "deply:all": "npm run deploy:staging && npm run deploy:production",
+    "deploy:all": "npm run deploy:staging && npm run deploy:production",
     "major": "npm version -m 'v%s' major",
     "minor": "npm version -m 'v%s' minor",
     "patch": "npm version -m 'v%s' patch",
