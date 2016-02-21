@@ -7,7 +7,8 @@
     "clean": "rm -rf dist/",
     "compile": "npm run clean && babel src --out-dir dist",
     "start": "npm run compile && node dist/app.js",
-    "test": "jest --verbose",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest --verbose",
     "test:integration": "npm run compile && mocha './__tests-integration__' --opts .mocha.opts",
     "deploy:production": "git push production HEAD",
     "deploy:staging": "git push -f staging HEAD:master",
@@ -15,7 +16,7 @@
     "major": "npm version -m 'v%s' major",
     "minor": "npm version -m 'v%s' minor",
     "patch": "npm version -m 'v%s' patch",
-    "preversion": "npm test && npm run test:integration",
+    "preversion": "npm test",
     "version": "",
     "postversion": "git push origin HEAD && git push origin --tags"
   },
