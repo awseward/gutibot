@@ -15,7 +15,7 @@
     "major": "npm version -m 'v%s' major",
     "minor": "npm version -m 'v%s' minor",
     "patch": "npm version -m 'v%s' patch",
-    "preversion": "npm test",
+    "preversion": "npm test && npm run test:integration",
     "version": "",
     "postversion": "git push origin HEAD && git push origin --tags"
   },
