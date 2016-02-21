@@ -1,7 +1,3 @@
 machine:
   node:
     version: stable
-
-test:
-  post:
-    - npm run test:integration
