@@ -47,7 +47,7 @@
     "babel-jest": "*",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
-    "eslint": "^1.10.0",
+    "eslint": "^7.10.0",
     "eslint-config-airbnb": "^4.0.0",
     "jest-cli": "^0.8.0",
     "mocha": "^2.4.5"
